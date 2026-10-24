@@ -1,0 +1,16 @@
+# Webview engine
+pywebview>=4.4.1
+
+# Markdown processing
+mistune>=3.0.2
+
+# Syntax highlighting
+pygments>=2.17.0
+
+# Packaging & distribution
+pyinstaller>=6.0.0
+
+# Optional dev dependencies
+pytest>=7.4.0
+black>=23.0.0
+ruff>=0.1.0
