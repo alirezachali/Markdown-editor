@@ -20,12 +20,24 @@ def main():
     window = create_window(editor, settings)
 
     print("Markdown Editor started successfully!")
-    print(f"Window title: {window.title}")
-    print(f"Working directory: {Path.cwd()}")
-    print(f"HTML loaded: {Path(window.url).name if window.url else 'from html string'}")
+    print("Window created. Starting webview...")
+
+    # Log state for debugging
+    html_path = Path(__file__).parent / "webview" / "app.html"
+    print(f"HTML file exists: {html_path.exists()}")
+    print("Starting webview...")
 
     # Start the webview event loop
-    webview.start()
+    try:
+        webview.start(gui="edge")
+    except Exception as e:
+        import traceback
+        print(f"Error starting webview edge, falling back: {e}")
+        try:
+            webview.start(gui="chromium")
+        except Exception as e2:
+            print(f"Error starting webview chromium: {e2}")
+            print(traceback.format_exc())
 
 
 if __name__ == "__main__":
